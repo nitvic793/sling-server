@@ -7,6 +7,7 @@
 
 module.exports = {
 	test: function(req,res){
+		var a = 1+2;
 		return res.ok();
 	}
 };
