@@ -1,11 +1,11 @@
 var request = require('supertest');
 
-describe('UsersController', function() {
+describe('UserController', function() {
 
   describe('#test()', function() {
     it('should return ok', function (done) {
       request(sails.hooks.http.app)
-        .get('/users/test')
+        .get('/user/test')
         .expect(200, done);      
     });
   });
