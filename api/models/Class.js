@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
+var uuid = require('node-uuid');
+
 module.exports = {
 
   attributes: {
@@ -23,8 +25,8 @@ module.exports = {
       required: true
     }
   },
-  beforeCreate: function(class, next) {
-    class.id = uuid.v4();
+  beforeCreate: function(class1, next) {
+    class1.id = uuid.v4();
     next();
   }
 };

@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
+var uuid = require('node-uuid');
+
 module.exports = {
 
   attributes: {
