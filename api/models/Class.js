@@ -8,6 +8,11 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     // This makes more sense than Grade and Section. In a school this can be something like "10-B" and
     // in a tuition center, it can be something like "Math-101"
     name: {
@@ -17,5 +22,9 @@ module.exports = {
       model: "Teacher",
       required: true
     }
+  },
+  beforeCreate: function(class, next) {
+    class.id = uuid.v4();
+    next();
   }
 };

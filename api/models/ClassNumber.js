@@ -8,6 +8,11 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     teacher: {
       model: "Teacher",
       required: true
@@ -22,5 +27,9 @@ module.exports = {
     room: {
       type: "string"
     }
+  },
+  beforeCreate: function(classNumber, next) {
+    classNumber.id = uuid.v4();
+    next();
   }
 };

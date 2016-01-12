@@ -8,6 +8,11 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     notice: {
       type: "string",
       required: true
@@ -20,5 +25,9 @@ module.exports = {
       model: "Class",
       required: true
     }
+  },
+  beforeCreate: function(noticeBoard, next) {
+    noticeBoard.id = uuid.v4();
+    next();
   }
 };

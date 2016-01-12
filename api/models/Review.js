@@ -8,6 +8,11 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     review: {
       type: "string",
       required: true
@@ -20,5 +25,9 @@ module.exports = {
       model: "Student",
       required: true
     }
+  },
+  beforeCreate: function(review, next) {
+    review.id = uuid.v4();
+    next();
   }
 };

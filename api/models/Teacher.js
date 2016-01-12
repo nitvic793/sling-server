@@ -8,6 +8,11 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     employmentStartDate: {
       type: "datetime",
       required: true
@@ -20,10 +25,10 @@ module.exports = {
     },
     department: {
       type: "string"
-    },
-    user: {
-      model: "User",
-      required: true
     }
+  },
+  beforeCreate: function(teacher, next) {
+    teacher.id = uuid.v4();
+    next();
   }
 };

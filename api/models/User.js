@@ -8,6 +8,11 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     name: {
       type: "string",
       required: true
@@ -21,6 +26,12 @@ module.exports = {
       minLength: 6,
       required: true
     },
+    parent: {
+      model: "Parent"
+    },
+    teacher: {
+      model: "Teacher"
+    }
   },
   beforeCreate: function(user, cb) {
     bcrypt.genSalt(10, function(err, salt) {

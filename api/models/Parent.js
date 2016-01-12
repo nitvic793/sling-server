@@ -8,13 +8,18 @@
 module.exports = {
 
   attributes: {
+    id: {
+      type: 'string',
+      primaryKey: true,
+      defaultsTo: uuid.v4()
+    },
     relationship: {
       type: "string",
       required: true
-    },
-    user: {
-      model: "User",
-      required: true
     }
+  },
+  beforeCreate: function(parent, next) {
+    parent.id = uuid.v4();
+    next();
   }
 };
