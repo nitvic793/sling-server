@@ -1,6 +1,6 @@
 var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
-bcrypt = require('bcrypt');
+bcrypt = require('bcryptjs');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -13,15 +13,15 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'phone',
     passwordField: 'password'
   },
-  function(email, password, done) {
+  function(phone, password, done) {
 
-    User.findOne({ email: email }, function (err, user) {
+    User.findOne({ phoneNumber: phone }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+        return done(null, false, { message: 'Incorrect Phone Number.' });
       }
 
       bcrypt.compare(password, user.password, function (err, res) {
@@ -30,8 +30,7 @@ passport.use(new LocalStrategy({
               message: 'Invalid Password'
             });
           var returnUser = {
-            email: user.email,
-            role: user.role,
+            phoneNumber: user.phoneNumber,
             createdAt: user.createdAt,
             id: user.id
           };

@@ -1,21 +1,24 @@
 /**
-* Reviews.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Reviews.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
   attributes: {
-    review:{
-      type:"string"
+    review: {
+      type: "string",
+      required: true
     },
-    classNumber:{
-      model:"ClassNumbers"
+    classNumber: {
+      model: "ClassNumber",
+      required: true
     },
-    student:{
-      model:"Students"
+    student: {
+      model: "Student",
+      required: true
     }
   }
 };

@@ -5,5 +5,6 @@ module.exports = function(req, res, next) {
     }
   }
 
-  return res.redirect('/clippings');
+  // TODO: Point this to the home route after login. Just a placeholder for now
+  return res.redirect('/home');
 };

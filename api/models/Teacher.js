@@ -1,30 +1,29 @@
 /**
-* Teachers.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Teachers.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
   attributes: {
-    name:{
-      type:"string"
+    employmentStartDate: {
+      type: "datetime",
+      required: true
     },
-    phoneNumber:{
-      type:"string"
+    terminationDate: {
+      type: "datetime"
     },
-    employmentStartDate:{
-      type:"datetime"
+    employeeNumber: {
+      type: "string"
     },
-    terminationDate:{
-      type:"datetime"
+    department: {
+      type: "string"
     },
-    employeeNumber:{
-      type:"string"
-    },
-    department:{
-      type:"string"
+    user: {
+      model: "User",
+      required: true
     }
   }
 };
