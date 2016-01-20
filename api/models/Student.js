@@ -26,9 +26,6 @@ module.exports = {
     identificationNumber: {
       type: "string"
     },
-    cls: {
-      model: "Class"
-    },
     classes: {
       collection: "ClassNumber"
     },

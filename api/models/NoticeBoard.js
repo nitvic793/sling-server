@@ -23,8 +23,8 @@ module.exports = {
       type: "datetime",
       required: true
     },
-    cls: {
-      model: "Class",
+    classNumber: {
+      model: "ClassNumber",
       required: true
     }
   },
