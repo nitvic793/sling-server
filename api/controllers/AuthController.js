@@ -27,9 +27,9 @@ module.exports = {
       }
       req.logIn(user, function(err) {
         if (err) res.redirect("/login");
-
+        console.log(user);
         // TODO: Fetch the all the user accounts here (Teacher/Parent) and merge info
-        return res.redirect("/home")
+        return res.redirect("/")
       });
 
     })(req, res);

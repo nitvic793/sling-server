@@ -16,8 +16,15 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
  */
 
-
+var passport = require('passport');
 module.exports.policies = {
+  '*': [
+       // Initialize Passport
+       passport.initialize(),
+
+       // Use Passport's built-in sessions
+       passport.session()
+   ],
   'ClassController': {
     '*': 'isAuthenticated',
   },
