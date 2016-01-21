@@ -6,7 +6,7 @@
  */
 
 var uuid = require('node-uuid');
-
+var bcrypt = require('bcrypt');
 module.exports = {
 
   attributes: {
@@ -49,4 +49,3 @@ module.exports = {
     });
   }
 };
-
