@@ -28,8 +28,12 @@ module.exports = {
       req.logIn(user, function(err) {
         if (err) res.redirect("/login");
         console.log(user);
+        User.findOne({phoneNumber:user.phoneNumber}, function(err,data){
+          console.log(data);
+          return res.json(data);
+        });
         // TODO: Fetch the all the user accounts here (Teacher/Parent) and merge info
-        return res.redirect("/")
+        //return res.json(user);
       });
 
     })(req, res);
