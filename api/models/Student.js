@@ -27,10 +27,12 @@ module.exports = {
       type: "string"
     },
     classes: {
-      collection: "ClassNumber"
+      collection: "ClassNumber",
+      via: "students"
     },
     parentInfo: {
-      collection: "Parent"
+      collection: "Parent",
+      via:'wards'
     },
     reviews: {
       collection: "Review"

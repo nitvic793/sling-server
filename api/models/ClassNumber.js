@@ -28,6 +28,10 @@ module.exports = {
     },
     room: {
       type: "string"
+    },
+    students:{
+      collection:'Student',
+      via:'classes'
     }
   },
   beforeCreate: function(classNumber, next) {

@@ -18,6 +18,10 @@ module.exports = {
     relationship: {
       type: "string",
       required: true
+    },
+    wards:{
+      collection:'Student',
+      via:'parentInfo'
     }
   },
   beforeCreate: function(parent, next) {

@@ -21,7 +21,8 @@ module.exports = {
     },
     phoneNumber: {
       type: "string",
-      required: true
+      required: true,
+      unique:true
     },
     password: {
       type: 'string',
