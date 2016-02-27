@@ -15,6 +15,9 @@ module.exports = {
       primaryKey: true,
       defaultsTo: uuid.v4()
     },
+    title:{
+      type:"string"
+    },
     notice: {
       type: "string",
       required: true
@@ -23,8 +26,8 @@ module.exports = {
       type: "datetime",
       required: true
     },
-    classNumber: {
-      model: "ClassNumber",
+    classRoom: {
+      model: "ClassRoom",
       required: true
     }
   },

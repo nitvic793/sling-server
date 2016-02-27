@@ -1,7 +1,7 @@
 var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
 bcrypt = require('bcryptjs');
-
+var BasicStrategy = require('passport-http').BasicStrategy;
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
@@ -12,7 +12,7 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-passport.use(new LocalStrategy({
+passport.use(new BasicStrategy({
     usernameField: 'phone',
     passwordField: 'password'
   },

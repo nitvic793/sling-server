@@ -19,8 +19,8 @@ module.exports = {
       type: "string",
       required: true
     },
-    classNumber: {
-      model: "ClassNumber",
+    classRoom: {
+      model: "ClassRoom",
       required: true
     },
     student: {

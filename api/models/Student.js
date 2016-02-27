@@ -27,7 +27,7 @@ module.exports = {
       type: "string"
     },
     classes: {
-      collection: "ClassNumber",
+      collection: "ClassRoom",
       via: "students"
     },
     parentInfo: {

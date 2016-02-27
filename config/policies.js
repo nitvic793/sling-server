@@ -25,25 +25,23 @@ module.exports.policies = {
        // Use Passport's built-in sessions
        passport.session()
    ],
-  'ClassController': {
-    '*': 'isAuthenticated',
-  },
-  'ClassNumberController': {
-    '*': 'isAuthenticated',
+
+  'ClassRoomController': {
+    '*': 'authenticated',
   },
   'NoticeBoardController': {
-    '*': 'isAuthenticated',
+    '*': 'authenticated',
   },
   'ParentController': {
-    '*': 'isAuthenticated',
+    '*': 'authenticated',
   },
   'ReviewController': {
-    '*': 'isAuthenticated',
+    '*': 'authenticated',
   },
   'StudentController': {
-    '*': 'isAuthenticated',
+    '*': 'authenticated',
   },
   'TeacherController': {
-    '*': 'isAuthenticated',
+    '*': 'authenticated',
   },
 };
