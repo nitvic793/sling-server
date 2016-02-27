@@ -13,7 +13,6 @@ module.exports = {
     id: {
       type: 'string',
       primaryKey: true,
-      defaultsTo: uuid.v4()
     },
     name: {
       type: "string",
@@ -51,6 +50,7 @@ module.exports = {
           console.log(err);
           cb(err);
         } else {
+          user.id = uuid.v4();
           user.password = hash;
           cb();
         }
