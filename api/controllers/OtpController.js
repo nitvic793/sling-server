@@ -14,7 +14,7 @@ module.exports = {
 			if(!err && data!=null && data.phoneNumber !=null){
 				Otp.create({otp:message,user:userId}).exec(function(error,otp){
 					if(!error){
-						SmsService.sendMessage(message,data.phoneNumber, (err, smsId)=>{
+						SmsService.sendMessage(message,data.phoneNumber, function(err, smsId){
 							if(!err){
 								return res.ok({status:'OTP sent'});
 							}
