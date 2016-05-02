@@ -102,6 +102,10 @@ module.exports = {
       collection: 'Student',
       via: 'parentInfo'
     },
+    
+    school:{
+      model:'School'
+    },
 
     toJSON() {
       let obj = this.toObject();
