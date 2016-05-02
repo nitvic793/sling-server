@@ -1,21 +1,31 @@
+"use strict";
+
 /**
-* Otp.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Otp
+ * @description :: Model for storing Otp records
+ */
 
 module.exports = {
+  schema: true,
 
   attributes: {
+    // Fill your attributes here
     otp:{
-      type:'string'
+      type:'string',
+      required:true
     },
-    user:{
-      model:'User'
-    },
+    
     phoneNumber:{
-      type:'string'
+      type:'string',
+      required:true,
+      unique:true
+    },
+    
+    toJSON() {
+      return this.toObject();
     }
-  }
+  },
+
+  beforeUpdate: (values, next) => next(),
+  beforeCreate: (values, next) => next()
 };

@@ -1,11 +1,8 @@
+"use strict";
+
 /**
- * ReviewsController
- *
- * @description :: Server-side logic for managing Reviews
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ * ReviewController
+ * @description :: Server-side logic for ...
  */
 
-module.exports = {
-	
-};
-
+module.exports = {};

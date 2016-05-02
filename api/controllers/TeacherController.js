@@ -1,11 +1,8 @@
+"use strict";
+
 /**
- * TeachersController
- *
- * @description :: Server-side logic for managing Teachers
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ * TeacherController
+ * @description :: Server-side logic for ...
  */
 
-module.exports = {
-	
-};
-
+module.exports = {};

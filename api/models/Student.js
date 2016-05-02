@@ -1,20 +1,15 @@
+"use strict";
+
 /**
- * Students.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/#!documentation/models
+ * Student
+ * @description :: Model for storing Student records
  */
 
-var uuid = require('node-uuid');
-
 module.exports = {
+  schema: true,
 
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      defaultsTo: uuid.v4()
-    },
+    // Fill your attributes here
     name: {
       type: "string",
       required: true
@@ -32,14 +27,21 @@ module.exports = {
     },
     parentInfo: {
       collection: "Parent",
-      via:'wards'
+      via: 'wards'
     },
     reviews: {
       collection: "Review"
+    },
+    
+    school:{
+      model:'School'  
+    },
+    
+    toJSON() {
+      return this.toObject();
     }
   },
-  beforeCreate: function(student, next) {
-    student.id = uuid.v4();
-    next();
-  }
+
+  beforeUpdate: (values, next) => next(),
+  beforeCreate: (values, next) => next()
 };

@@ -1,67 +1,76 @@
+"use strict";
+
 /**
  * OtpController
- *
- * @description :: Server-side logic for managing Otps
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ * @description :: Server-side logic for ...
  */
 
 module.exports = {
-	generateOtp: function(req,res){
-		var to = req.param('to');
-		var userId = req.param('user');
-		var message = Math.floor((Math.random() * 1000) + 1000)+'';
-		User.findOne({id:userId}).exec(function(err,data){
-			if(!err && data!=null && data.phoneNumber !=null){
-				Otp.create({otp:message,user:userId}).exec(function(error,otp){
-					if(!error){
-						SmsService.sendMessage(message,data.phoneNumber, function(err, smsId){
-							if(!err){
-								return res.ok({status:'OTP sent'});
-							}
-							else {
-								return res.serverError({status:err});
-							}
-						});
-					}
-					else{
-						return res.serverError({status:'DB error',message:error});
-					}
-				});
-			}
-			else{
-				return res.serverError({status:'Could not find user/Phone Number'});
-			}
-		});
-	},
 
-	verify: function(req,res){
-		var otp = req.param('otp');
-		var userId = req.param('user');
-		Otp.findOne({user:userId}).exec(function(err,otpData){
-			if(!err && otpData!=null){
-				console.log(otpData.otp, otp);
-				if(otp==otpData.otp){
-					User.update({id:userId}, {otpVerificationDone:true}).exec(function(error, user){
-						if(!error){
-							Otp.destroy({id:otpData.id}).exec(function(errOtp){
-								if(!errOtp){
-									return res.ok({status:'OTP verified'});
-								}
-								else{
-									return res.serverError({status:'DB Error'});
-								}
-							});
-						}
-						else {
-							return res.serverError({status:'DB Error'});
-						}
-					});
-				}
-				else return res.badRequest({status:'Failed to verify OTP'});
-			}
-			else{
-				return res.badRequest({status:'Could not find User in OTP list'});
-			}
-		});
-	}
+    generateOtp: function (req, res) {
+        var phoneNumber = req.param('phoneNumber');
+        if (!phoneNumber) {
+            return res.badRequest({ status: 'Parameter missing' });
+        }
+        var otp = Math.floor((Math.random() * 10000)) + '';
+        User.findOne({ phoneNumber: phoneNumber })
+            .then(function (user) {
+                if (!user) {
+                    throw new Error('No user found with given phone number');
+                }
+                else {
+                    return Otp.findOne({ phoneNumber: phoneNumber });
+                }
+            })
+            .then(function (otpObj) {
+                if (otpObj) {
+                    return Otp.update({ phoneNumber: phoneNumber }, { otp: otp });
+                }
+                else {
+                    return Otp.create({ otp: otp, phoneNumber: phoneNumber });
+                }
+            })
+            .then(function (otpObj) {
+                SmsService.sendMessage(otp, '+91'+phoneNumber, function(err,message){
+                   if(!err){
+                       return res.ok({status:'OTP sent'});
+                   } 
+                   else res.serverError({status:'Could not send OTP'});
+                });                
+            })
+            .catch(function (err) {
+                console.error(err);
+                return res.serverError(err);
+            });
+    },
+
+    verify: function (req, res) {
+        var phoneNumber = req.param('phoneNumber');
+        var otp = req.param('otp');
+        if (!otp || !phoneNumber) {
+            return res.badRequest({ status: 'Parameters missing' });
+        }
+        console.log(otp,phoneNumber);
+        Otp.findOne({ phoneNumber: phoneNumber, otp: otp })
+            .then(function (otpObj) {
+                if (!otpObj) {
+                    throw new Error('Could not verify OTP');
+                }
+                else {
+                    return User.update({ phoneNumber: phoneNumber }, { otpVerified: true });
+                }
+            })
+            .then(function (user) {
+                return [Otp.destroy({phoneNumber:phoneNumber}), user];                
+            })
+            .spread(function(otpObj, user){
+                return res.ok({
+                    token: CipherService.jwt.encodeSync({ id: user.id }),
+                    user: user
+                });
+            })
+            .catch(function (err) {
+                return res.serverError({ status: 'Error in verifying OTP', error: err });
+            });
+    }
 };

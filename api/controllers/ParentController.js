@@ -1,11 +1,8 @@
+"use strict";
+
 /**
- * ParentsController
- *
- * @description :: Server-side logic for managing Parents
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ * ParentController
+ * @description :: Server-side logic for ...
  */
 
-module.exports = {
-	
-};
-
+module.exports = {};

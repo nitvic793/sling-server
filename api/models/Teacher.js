@@ -1,16 +1,15 @@
+"use strict";
+
 /**
- * Teachers.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/#!documentation/models
+ * Teacher
+ * @description :: Model for storing Teacher records
  */
 
-var uuid = require('node-uuid');
-
 module.exports = {
+  schema: true,
 
   attributes: {
-  
+    // Fill your attributes here
     employmentStartDate: {
       type: "datetime",
       required: true
@@ -23,10 +22,13 @@ module.exports = {
     },
     department: {
       type: "string"
+    },
+
+    toJSON() {
+      return this.toObject();
     }
   },
-  beforeCreate: function(teacher, next) {
-    teacher.id = uuid.v4();
-    next();
-  }
+
+  beforeUpdate: (values, next) => next(),
+  beforeCreate: (values, next) => next()
 };

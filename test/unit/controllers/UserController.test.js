@@ -1,13 +1,6 @@
-var request = require('supertest');
+"use strict";
 
-describe('UserController', function() {
+const assert = require('chai').assert;
 
-  describe('#test()', function() {
-    it('should return ok', function (done) {
-      request(sails.hooks.http.app)
-        .get('/user/test')
-        .expect(200, done);      
-    });
-  });
-
+describe('controllers:UserController', () => {
 });

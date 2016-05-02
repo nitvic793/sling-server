@@ -1,20 +1,15 @@
+"use strict";
+
 /**
- * ClassRoom.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/#!documentation/models
+ * ClassRoom
+ * @description :: Model for storing ClassRoom records
  */
 
-var uuid = require('node-uuid');
-
 module.exports = {
+  schema: true,
 
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      defaultsTo: uuid.v4()
-    },
+    // Fill your attributes here
     teacher: {
       model: "Teacher",
       required: true
@@ -29,13 +24,20 @@ module.exports = {
     room: {
       type: "string"
     },
-    students:{
-      collection:'Student',
-      via:'classes'
+    students: {
+      collection: 'Student',
+      via: 'classes'
+    },
+    
+    school:{
+      model:'School'
+    },
+    
+    toJSON() {
+      return this.toObject();
     }
   },
-  beforeCreate: function(classRoom, next) {
-    classRoom.id = uuid.v4();
-    next();
-  }
+
+  beforeUpdate: (values, next) => next(),
+  beforeCreate: (values, next) => next()
 };

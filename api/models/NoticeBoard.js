@@ -1,22 +1,17 @@
+"use strict";
+
 /**
- * NoticeBoards.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/#!documentation/models
+ * NoticeBoard
+ * @description :: Model for storing NoticeBoard records
  */
 
-var uuid = require('node-uuid');
-
 module.exports = {
+  schema: true,
 
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      defaultsTo: uuid.v4()
-    },
-    title:{
-      type:"string"
+    // Fill your attributes here
+    title: {
+      type: "string"
     },
     notice: {
       type: "string",
@@ -29,10 +24,12 @@ module.exports = {
     classRoom: {
       model: "ClassRoom",
       required: true
+    },
+    toJSON() {
+      return this.toObject();
     }
   },
-  beforeCreate: function(noticeBoard, next) {
-    noticeBoard.id = uuid.v4();
-    next();
-  }
+
+  beforeUpdate: (values, next) => next(),
+  beforeCreate: (values, next) => next()
 };

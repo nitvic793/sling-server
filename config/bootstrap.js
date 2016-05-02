@@ -1,17 +1,29 @@
+"use strict";
+
 /**
- * Bootstrap
- * (sails.config.bootstrap)
- *
  * An asynchronous bootstrap function that runs before your Sails app gets lifted.
  * This gives you an opportunity to set up your data model, run jobs, or perform some special logic.
- *
- * For more information on bootstrapping your app, check out:
- * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
+ * @param {Function} cb This function should always be called, so DON'T REMOVE IT
  */
 
-module.exports.bootstrap = function(cb) {
-
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+module.exports = {
+  bootstrap: cb => {
+    User.findOne({username:'root'}).exec(function(err,data){
+      console.log(data);
+      if(!data){
+        User.create({username:'root',password:'IamRoot', email:'nithishvictor@gmail.com', phoneNumber:'9731842165', otpVerified:true})
+        .exec(function(err,data){
+          sails.log.info('Root user created', err); 
+          User.findOne({username:'root'}).exec((err,data)=>console.log(err,data));         
+        });
+      }
+      else{
+        sails.log.info('Root user found');
+      }
+      if(err){
+        sails.log.error('Could not set root user');
+      }
+    });
+    cb();
+  }
 };
