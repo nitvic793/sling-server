@@ -21,6 +21,10 @@ module.exports = {
     
     OtpController:{
       '*':true
+    },
+    
+    UserController:{
+      '*':true
     }
   }
 };
