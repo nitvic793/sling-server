@@ -11,7 +11,7 @@ module.exports = {
   attributes: {
     // Fill your attributes here
     teacher: {
-      model: "Teacher",
+      model: "User",
       required: true
     },
     subject: {

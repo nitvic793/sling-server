@@ -26,7 +26,7 @@ module.exports = {
       via: "students"
     },
     parentInfo: {
-      collection: "Parent",
+      collection: "User",
       via: 'wards'
     },
     reviews: {

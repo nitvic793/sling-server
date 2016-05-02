@@ -72,6 +72,36 @@ module.exports = {
       type:'boolean',
       defaultsTo: false
     },
+    
+    isParent:{
+      type:'boolean',
+      defaultsTo: false      
+    },
+    
+    isTeacher:{
+      type:'boolean',
+      defaultsTo:false
+    },
+    
+    employmentStartDate: {
+      type: "datetime",
+    },
+    terminationDate: {
+      type: "datetime"
+    },
+    employeeNumber: {
+      type: "string"
+    },
+    department: {
+      type: "string"
+    },
+    relationship: {
+      type: "string",
+    },
+    wards: {
+      collection: 'Student',
+      via: 'parentInfo'
+    },
 
     toJSON() {
       let obj = this.toObject();
