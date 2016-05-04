@@ -29,6 +29,11 @@ module.exports = {
       via: 'classes'
     },
     
+    notices:{
+      collection:'NoticeBoard',
+      via:'classRoom'
+    },
+    
     school:{
       model:'School'
     },

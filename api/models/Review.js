@@ -18,10 +18,16 @@ module.exports = {
       model: "ClassRoom",
       required: true
     },
+    
     student: {
       model: "Student",
       required: true
+    }, 
+    
+    teacher:{
+      model:'User'
     },
+    
     toJSON() {
       return this.toObject();
     }

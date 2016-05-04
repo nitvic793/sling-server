@@ -18,9 +18,9 @@ module.exports = {
       required: true
     },
     date: {
-      type: "datetime",
-      required: true
+      type: "datetime"
     },
+    
     classRoom: {
       model: "ClassRoom",
       required: true

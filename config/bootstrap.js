@@ -13,6 +13,7 @@ module.exports = {
       if(!data){
         User.create({username:'root',password:'IamRoot', email:'nithishvictor@gmail.com', phoneNumber:'9731842165', otpVerified:true})
         .exec(function(err,data){
+          Admin.create({role:'admin',user:data.id});
           sails.log.info('Root user created', err); 
           User.findOne({username:'root'}).exec((err,data)=>console.log(err,data));         
         });
