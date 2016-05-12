@@ -25,6 +25,8 @@ module.exports = {
       model: "ClassRoom",
       required: true
     },
+    
+    
     toJSON() {
       return this.toObject();
     }
