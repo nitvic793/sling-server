@@ -31,7 +31,7 @@ module.exports = {
     },
     reviews: {
       collection: "Review",
-      via:"Student"
+      via:"student"
     },
     
     school:{
