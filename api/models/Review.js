@@ -21,7 +21,8 @@ module.exports = {
     
     student: {
       model: "Student",
-      required: true
+      required: true,
+      via:"reviews"
     }, 
     
     teacher:{

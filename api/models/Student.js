@@ -30,7 +30,8 @@ module.exports = {
       via: 'wards'
     },
     reviews: {
-      collection: "Review"
+      collection: "Review",
+      via:"Student"
     },
     
     school:{
