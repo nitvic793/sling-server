@@ -103,6 +103,11 @@ module.exports = {
       via: 'parentInfo'
     },
     
+    classes:{
+      collection:'ClassRoom',
+      via:'teacher'
+    },
+    
     school:{
       model:'School'
     },
