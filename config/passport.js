@@ -75,7 +75,7 @@ const SOCIAL_STRATEGY_CONFIG = {
  */
 const _onLocalStrategyAuth = (req, email, password, next) => {
   User
-    .findOne({email: email})
+    .findOne({email: email}).populate('wards').populate('classes')
     .then(user => {
       if (!user) return next(null, null, sails.config.errors.USER_NOT_FOUND);
       if (!HashService.bcrypt.compareSync(password, user.password)) return next(null, null, sails.config.errors.USER_NOT_FOUND);
@@ -93,7 +93,7 @@ const _onLocalStrategyAuth = (req, email, password, next) => {
  */
 const _onJwtStrategyAuth = (req, payload, next) => {
   User
-    .findOne({id: payload.id})
+    .findOne({id: payload.id}).populate('wards').populate('classes')
     .then(user => {
       if (!user) return next(null, null, sails.config.errors.USER_NOT_FOUND);
       return next(null, user, {});
