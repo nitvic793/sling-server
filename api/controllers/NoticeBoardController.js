@@ -15,13 +15,13 @@ module.exports = {
             if(!student){
                 return res.badRequest({status:'Missing parameters'});
             }
-            Student.findOne({id:student}).populate('classes')
+            Student.findOne({id:student}).populate('classes',{limit:100})
             .then(function(data){
                 return data.classes;
             }).then(function(cl){
                 var promises = [];
                 cl.forEach(function(v,i,a){
-                    promises.push(ClassRoom.findOne({id:v.id}).populate('notices'));
+                    promises.push(ClassRoom.findOne({id:v.id}).populate('notices'),{limit:100});
                 }); 
                 return promises;
             }).all().then(function(cln){
@@ -43,5 +43,15 @@ module.exports = {
         else{
             return res.serverError({status:'User neither Teacher or Parent'});
         }
+    },
+    
+    getAll: function(req,res){
+        var user = req.user;
+        console.log(user);
+        var promises = [];
+        for(var i=0;i<user.wards.length;++i){
+
+        }
+        res.ok();
     }
 };
