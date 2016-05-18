@@ -60,8 +60,8 @@ module.exports = {
                     return User.update({ phoneNumber: phoneNumber }, { otpVerified: true });
                 }
             })
-            .then(function (user) {
-                return [Otp.destroy({phoneNumber:phoneNumber}), user];                
+            .then(function (user) {                
+                return [Otp.destroy({phoneNumber:phoneNumber}), User.findOne({id:user[0].id}).populateAll()];                
             })
             .spread(function(otpObj, user){
                 return res.ok({
